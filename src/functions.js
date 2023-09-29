@@ -1,3 +1,7 @@
+'use strict'
+
+
+
 export {
     booksFromUser,
     booksFromModule,
@@ -14,3 +18,4 @@ export {
     getModuleByCode,
     getModuleIndexByCode
   }
+
