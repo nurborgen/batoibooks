@@ -5,18 +5,9 @@ export default class User {
         this.nick = nick
     }
 
-    getUserById(users, id) {
-        return users.find(users => users.id == id)
+    toString() {
+        return this.nick + ' (' + this.id + ') - ' + this.email
     }
-
-    getUserIndexById(users, id) {
-        return users.findIndex(users => users.id == id)
-    }
-
-    getUserByNickName(users, nick) {
-        return users.find(users => users.nick == nick)
-    }
-
     
       
 }
