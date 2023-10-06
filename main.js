@@ -1,6 +1,6 @@
 import './style.css'
 import logoBatoi from '/logoBatoi.png'
-
+import data from './datos'
 import books from './src/model/books.class'
 import users from './src/model/users.class'
 import module from './src/model/modules.class'
@@ -16,6 +16,13 @@ document.querySelector('#app').innerHTML = `
     </p>
   </div>
 `
+
+const books = new Books();
+books.populateData(data.books);
+const users = new Users();
+users.populateData(data.users);
+const modules = new Modules();
+modules.populateData(data.modules);
 
 setupCounter(document.querySelector('#counter'))
 
