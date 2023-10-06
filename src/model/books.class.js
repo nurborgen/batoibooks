@@ -7,38 +7,55 @@ export default class Books {
 
 
     booksFromModule(module) {
-        return this.data.filter(books => books.idModule == module) 
+        let result = new Books
+        result.data = this.data.filter(books => books.idModule == module) 
+        return result
     }
 
     booksFromUser(number) {
-        return this.data.filter(books => books.idUser == number)
+        let result = new Books
+        result.data = this.data.filter(books => books.idUser == number)
+        return result
     }
 
     booksCheeperThan(number) {
-        return this.data.filter(books => books.price <= number) 
+        let result = new Books
+        result.data = this.data.filter(books => books.price <= number) 
+        return result
     }
 
     booksWithStatus(status) {
-        return this.data.filter(books => books.status == status) 
+        let result = new Books
+        result.data = this.data.filter(books => books.status == status) 
+        return result
     }
     
     averagePriceOfBooks() {
+        let result = new Books
+        
         if(this.data.lenght <= 0) {
           return 0.00.toFixed(2) + ' €'
         }
-        return this.data.reduce((total, books) => total += books.price)/array.lenght
+        result.data = this.data.reduce((total, books) => total += books.price)/array.lenght
+        return result
     }
 
     booksOfTypeNote() {
-        return this.data.filter(books => books.publisher == "Apunts")
+        let result = new Books
+        result.data = this.data.filter(books => books.publisher == "Apunts")
+        return result
     }
 
     booksNotOfTypeNote() {
-        return this.data.filter(books => books.publisher != "Apunts")
+        let result = new Books
+        result.data = this.data.filter(books => books.publisher != "Apunts")
+        return result
     }
 
     booksNotSold() {
-        return this.data.filter(books => books.soldDate == "")
+        let result = new Books
+        result.data = this.data.filter(books => books.soldDate == "")
+        return result
     }
 
     incrementPriceOfbooks(number) {
@@ -47,8 +64,8 @@ export default class Books {
         }
         this.data = this.data.map((book) => {
             const updatedBook = { ...book }; 
-            updatedBook.price *= (1 + number); 
-            return updatedBook.toFixed(1); 
+            updatedBook.price *= (1 + number).toFixed(1); 
+            return updatedBook; 
         });
     }
 
@@ -70,10 +87,12 @@ export default class Books {
     }
 
     getNewId() {
+        let result = new Books()
         if(this.data.length === 0) {
             return 1
         }
-        return this.data.reduce((max, user) => user.id > max ? user.id : max, 0) + 1
+        result =  this.data.reduce((max, user) => user.id > max ? user.id : max, 0)
+        return result + 1
     }
 
     removeItem(item) {
