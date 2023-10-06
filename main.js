@@ -17,12 +17,12 @@ document.querySelector('#app').innerHTML = `
   </div>
 `
 
-const books = new Books();
-books.populateData(data.books);
-const users = new Users();
-users.populateData(data.users);
-const modules = new Modules();
-modules.populateData(data.modules);
+const libros = new Books();
+libros.populateData(data.books);
+const usuarios = new Users();
+usuarios.populateData(data.users);
+const modulos = new Modules();
+modulos.populateData(data.modules);
 
 setupCounter(document.querySelector('#counter'))
 
