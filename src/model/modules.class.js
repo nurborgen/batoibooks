@@ -1,3 +1,4 @@
+import ModulesRepositoy from "../repositories/modules.repository"
 import Module from "./module.class"
 
 export default class Modules {
@@ -14,7 +15,8 @@ export default class Modules {
     }
 
     populateData(array) {
-        this.data = array.map(arrayData => new Module(arrayData.code, arrayData.cliteral, arrayData.vliteral, arrayData.idCourse));
+        const modulesRepositoy = new ModulesRepositoy()
+        return modulesRepositoy.getAllModules()
     }
 
     addItem(object) {

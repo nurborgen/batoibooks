@@ -8,6 +8,7 @@ describe('Clase User', () => {
       id: 5,
       email: 'asd@asd.es',
       nick: 'dsa',
+      password: '12',
     });
   });
 
