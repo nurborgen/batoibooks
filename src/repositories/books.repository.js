@@ -73,4 +73,22 @@ export default class BooksRepositoy {
         const datos = await response.json()
         return datos
     }
+
+    async updatePriceOfBook(id, newPrice) {
+        const response = await fetch(this.SERVER + 'books/' + id, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              price: newPrice,
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+    
+        if(!response.ok) {
+          throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
+        }
+        const datos = await response.json()
+        return datos
+    }
 }

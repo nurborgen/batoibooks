@@ -77,12 +77,12 @@ export default class UsersRepositoy {
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
             },
-          })
-        
-          if(!response.ok) {
-            throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
-          }
-          const datos = await response.json()
-          return datos
+        })
+    
+        if(!response.ok) {
+          throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
+        }
+        const datos = await response.json()
+        return datos
     }
 }
