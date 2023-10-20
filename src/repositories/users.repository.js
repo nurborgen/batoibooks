@@ -17,8 +17,8 @@ export default class UsersRepositoy {
         if(!response.ok) {
             throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
         }
-        const users = await response.json()
-        return users
+        const user = await response.json()
+        return user
     }
 
     async addUser(user) {
@@ -55,13 +55,27 @@ export default class UsersRepositoy {
     async changeUser(user) {
         const response = await fetch(this.SERVER + 'users/' + user.id, {
             method: 'PUT',
-            body: JSON.stringify({
-                email: user.email,
-                nick: user.nick,
-                password: user.password,
-            }),
+            body: JSON.stringify(user),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
+            },
+          })
+        
+          if(!response.ok) {
+            throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
+          }
+          const datos = await response.json()
+          return datos
+    }
+
+    async updateUserPassword(id, newPassword) {
+        const response = await fetch(this.SERVER + 'users/' + id, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              password: newPassword,
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
             },
           })
         
