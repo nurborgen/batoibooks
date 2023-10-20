@@ -32,9 +32,9 @@ describe('LLamadas a Modules', () => {
   test('makes a GET request to fetch a module and returns the result', async () => {
     fetch.mockResolvedValue(createFetchResponse(data[0]))
     const repository = new ModulesRepository()
-    const module = await repository.getModuleById(data[0].id)
+    const module = await repository.getModuleById(data[0].code)
 
-    expect(fetch).toHaveBeenCalledWith(SERVER + '/modules/' + data[0].id)
+    expect(fetch).toHaveBeenCalledWith(SERVER + '/modules/' + data[0].code)
 
     expect(module).toStrictEqual(data[0])
   })
@@ -59,9 +59,9 @@ describe('LLamadas a Modules', () => {
   test('makes a DELETE request to remove a module and returns the result', async () => {
     fetch.mockResolvedValue(createFetchResponse({}))
     const repository = new ModulesRepository()
-    const module = await repository.removeModule(data[0].id)
+    const module = await repository.removeModule(data[0].code)
 
-    expect(fetch).toHaveBeenCalledWith(SERVER + '/modules/' + data[0].id, {
+    expect(fetch).toHaveBeenCalledWith(SERVER + '/modules/' + data[0].code, {
       method: 'DELETE'
     })
 
@@ -73,7 +73,7 @@ describe('LLamadas a Modules', () => {
     const repository = new ModulesRepository()
     const module = await repository.changeModule(data[0])
 
-    expect(fetch).toHaveBeenCalledWith(SERVER + '/modules/' + data[0].id,
+    expect(fetch).toHaveBeenCalledWith(SERVER + '/modules/' + data[0].code,
     {
       method: 'PUT',
       body: JSON.stringify(data[0]),

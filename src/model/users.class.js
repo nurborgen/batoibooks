@@ -1,4 +1,7 @@
+import UsersRepositoy from "../repositories/users.repository"
 import User from "./user.class"
+
+const usersRepositoy = new UsersRepositoy()
 
 export default class Users {
     constructor () {
@@ -6,7 +9,8 @@ export default class Users {
     }
 
     getUserById(id) {
-        return this.data.find(users => users.id == id)
+        const user
+        return 
     }
 
     getUserIndexById(id) {
@@ -25,13 +29,6 @@ export default class Users {
         let user = new User(this.getNewId(), object["email"], object["nick"])
         this.data.push(user)
         return user
-    }
-
-    getNewId() {
-        if(this.data.length === 0) {
-            return 1
-        }
-        return this.data.reduce((max, user) => user.id > max ? user.id : max, 0) + 1
     }
 
     removeItem(item) {
