@@ -1,3 +1,4 @@
+import BooksRepositoy from "../repositories/books.repository"
 import Book from "./book.class"
 
 export default class Books {
@@ -75,8 +76,9 @@ export default class Books {
         return filteredBooks
     }
 
-    populateData(array) {
-        this.data = array.map(arrayData => new Book(arrayData));
+    populateData() {
+        const booksRepository =  new BooksRepositoy()
+        return booksRepository.getAllBooks()
     }
 
     addItem(object) {

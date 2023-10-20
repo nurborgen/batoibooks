@@ -1,4 +1,4 @@
-export default class UsersRepositoy {
+export default class UsersRepository {
     constructor() {
         this.SERVER = import.meta.env.VITE_URL_API
     }

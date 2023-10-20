@@ -18,7 +18,7 @@ document.querySelector('#app').innerHTML = `
 `
 
 const libros = new books();
-libros.populateData(data.books);
+libros.populateData();
 const usuarios = new users();
 usuarios.populateData(data.users);
 const modulos = new modules();

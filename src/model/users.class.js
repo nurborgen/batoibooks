@@ -1,7 +1,7 @@
-import UsersRepositoy from "../repositories/users.repository"
+import UsersRepository from "../repositories/users.repository"
 import User from "./user.class"
 
-const usersRepositoy = new UsersRepositoy()
+const usersRepository = new UsersRepository()
 
 export default class Users {
     constructor () {
@@ -9,8 +9,7 @@ export default class Users {
     }
 
     getUserById(id) {
-        const user
-        return 
+        return usersRepository.getUserById(id)
     }
 
     getUserIndexById(id) {
@@ -22,7 +21,7 @@ export default class Users {
     }
 
     populateData(array) {
-        this.data = array.map(arrayData => new User(arrayData.id, arrayData.email, arrayData.nick));
+        return usersRepository.getAllUsers()
     }
 
     addItem(object) {
