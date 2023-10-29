@@ -1,4 +1,5 @@
 import Books from "../model/books.class"
+import Book from "../model/book.class"
 import Modules from "../model/modules.class"
 import Users from "../model/users.class"
 import BooksRepository from "../repositories/books.repository"
@@ -37,7 +38,7 @@ export default class Controller {
             this.view.listenDelete(id)
         })
     
-        this.view.bookForm.addEventListener('submit', (event) => {
+        this.view.bookForm.addEventListener('submit', async (event) => {
             // Aquí poned el código que
             // - cogerá los datos del formulario
             event.preventDefault();
@@ -50,7 +51,7 @@ export default class Controller {
             const status = document.getElementById('status').value
             const comments = document.getElementById('comments').value
             // - los validará
-            if (title === '' || idModule === '' || publisher === '' || price === '' || pages === '' || status === '') {
+            if ( idModule === '' || publisher === '' || price === '' || pages === '' || status === '' || comments === '') {
                 alert('Per favor, ompliu tots els camps obligatoris.');
                 return;
               }
@@ -60,11 +61,13 @@ export default class Controller {
                 return;
               }
             // - pedirá al modelo que añada ese libro
-            const constr = {id: id, idUser: idUser, idModule: idModule, publisher: publisher, price: price, status: status, comments: comments}
+            const constr = {id: id, idUser: idUser, idModule: idModule, publisher: publisher, price: price, pages: pages, status: status, comments: comments}
             const book = new Book(constr)
-            this.books.addItem(book)
+            const booksRepository =  new BooksRepository()
+            await booksRepository.addBooks(book)
+            this.view.renderBook(book)
             // - una vez hecho lo añadirá a la vista y borrará el formulario
-            this.view.clearForm()
+            //this.view.clearForm()
         })
 
     }
