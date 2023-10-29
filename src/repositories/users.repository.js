@@ -4,7 +4,7 @@ export default class UsersRepository {
     }
 
     async getAllUsers() {
-        const response = await fetch(this.SERVER + 'users')
+        const response = await fetch(this.SERVER + '/users')
         if(!response.ok) {
             throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
         }
@@ -13,7 +13,7 @@ export default class UsersRepository {
     }
 
     async getUserById(id) {
-        const response = await fetch(this.SERVER + 'users/' + id)
+        const response = await fetch(this.SERVER + '/users/' + id)
         if(!response.ok) {
             throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
         }
@@ -22,7 +22,7 @@ export default class UsersRepository {
     }
 
     async addUser(user) {
-        const response = await fetch(this.SERVER + 'users', {
+        const response = await fetch(this.SERVER + '/users', {
             method: 'POST',
             body: JSON.stringify({
                 id: user.id,
@@ -42,7 +42,7 @@ export default class UsersRepository {
     }
 
     async removeUser(id) {
-        const response = await fetch(this.SERVER + 'users/' + id, {
+        const response = await fetch(this.SERVER + '/users/' + id, {
             method: 'DELETE',
           })
           if(!response.ok) {
@@ -53,7 +53,7 @@ export default class UsersRepository {
     }
 
     async changeUser(user) {
-        const response = await fetch(this.SERVER + 'users/' + user.id, {
+        const response = await fetch(this.SERVER + '/users/' + user.id, {
             method: 'PUT',
             body: JSON.stringify(user),
             headers: {
@@ -69,7 +69,7 @@ export default class UsersRepository {
     }
 
     async updateUserPassword(id, newPassword) {
-        const response = await fetch(this.SERVER + 'users/' + id, {
+        const response = await fetch(this.SERVER + '/users/' + id, {
             method: 'PATCH',
             body: JSON.stringify({
               password: newPassword,

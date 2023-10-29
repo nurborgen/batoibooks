@@ -1,10 +1,10 @@
-export default class ModulesRepositoy {
+export default class ModulesRepository {
     constructor() {
         this.SERVER = import.meta.env.VITE_URL_API
     }
 
     async getAllModules() {
-        const response = await fetch(this.SERVER + 'modules')
+        const response = await fetch(this.SERVER + '/modules')
         if(!response.ok) {
             throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
         }
@@ -13,7 +13,7 @@ export default class ModulesRepositoy {
     }
 
     async getModulesById(code) {
-        const response = await fetch(this.SERVER + 'modules/' + code)
+        const response = await fetch(this.SERVER + '/modules/' + code)
         if(!response.ok) {
             throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
         }
@@ -22,7 +22,7 @@ export default class ModulesRepositoy {
     }
 
     async addModule(module) {
-        const response = await fetch(this.SERVER + 'modules', {
+        const response = await fetch(this.SERVER + '/modules', {
             method: 'POST',
             body: JSON.stringify({
                 code: module.code,
@@ -42,7 +42,7 @@ export default class ModulesRepositoy {
     }
 
     async removeModule(code) {
-        const response = await fetch(this.SERVER + 'modules/' + code, {
+        const response = await fetch(this.SERVER + '/modules/' + code, {
             method: 'DELETE',
           })
           if(!response.ok) {
@@ -53,7 +53,7 @@ export default class ModulesRepositoy {
     }
 
     async changeModule(module) {
-        const response = await fetch(this.SERVER + 'modules/' + module.code, {
+        const response = await fetch(this.SERVER + '/modules/' + module.code, {
             method: 'PUT',
             body: JSON.stringify(module),
             headers: {

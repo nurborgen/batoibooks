@@ -1,4 +1,4 @@
-import ModulesRepositoy from "../repositories/modules.repository"
+import ModulesRepository from "../repositories/modules.repository"
 import Module from "./module.class"
 
 export default class Modules {
@@ -14,9 +14,10 @@ export default class Modules {
         return this.data.findIndex(modulos => modulos.code == codigo)
     }
 
-    populateData(array) {
-        const modulesRepositoy = new ModulesRepositoy()
-        return modulesRepositoy.getAllModules()
+    async populateData() {
+        const modulesRepositoy = new ModulesRepository()
+        const array = await modulesRepositoy.getAllModules()
+        this.data = array
     }
 
     addItem(object) {

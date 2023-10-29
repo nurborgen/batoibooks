@@ -1,10 +1,10 @@
-export default class BooksRepositoy {
+export default class BooksRepository {
     constructor() {
         this.SERVER = import.meta.env.VITE_URL_API
     }
 
     async getAllBooks() {
-        const response = await fetch(this.SERVER + 'books')
+        const response = await fetch(this.SERVER + '/books')
         if(!response.ok) {
             throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
         }
@@ -13,7 +13,7 @@ export default class BooksRepositoy {
     }
 
     async getBooksById(id) {
-        const response = await fetch(this.SERVER + 'books/' + id)
+        const response = await fetch(this.SERVER + '/books/' + id)
         if(!response.ok) {
             throw 'Error ' + response.status + ' de la BBDD: ' + response.statusText
         }
@@ -22,7 +22,7 @@ export default class BooksRepositoy {
     }
 
     async addBooks(book) {
-        const response = await fetch(this.SERVER + 'books', {
+        const response = await fetch(this.SERVER + '/books', {
             method: 'POST',
             body: JSON.stringify({
                 id: book.code,
@@ -48,7 +48,7 @@ export default class BooksRepositoy {
     }
 
     async removeBooks(id) {
-        const response = await fetch(this.SERVER + 'books/' + id, {
+        const response = await fetch(this.SERVER + '/books/' + id, {
             method: 'DELETE',
         })
         if(!response.ok) {
@@ -59,7 +59,7 @@ export default class BooksRepositoy {
     }
 
     async changeBooks(book) {
-        const response = await fetch(this.SERVER + 'books/' + book.code, {
+        const response = await fetch(this.SERVER + '/books/' + book.code, {
             method: 'PUT',
             body: JSON.stringify(book),
             headers: {
@@ -75,7 +75,7 @@ export default class BooksRepositoy {
     }
 
     async updatePriceOfBook(id, newPrice) {
-        const response = await fetch(this.SERVER + 'books/' + id, {
+        const response = await fetch(this.SERVER + '/books/' + id, {
             method: 'PATCH',
             body: JSON.stringify({
               price: newPrice,

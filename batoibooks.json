@@ -1863,30 +1863,6 @@
   ],
   "books": [
     {
-      "id": 1,
-      "idUser": 2,
-      "idModule": "5025",
-      "publisher": "Apunts",
-      "price": 12,
-      "pages": 25,
-      "status": "good",
-      "photo": "",
-      "comments": "",
-      "soldDate": "2023-02-01"
-    },
-    {
-      "idUser": 3,
-      "idModule": "5021",
-      "publisher": "McGraw-Hill",
-      "price": 75,
-      "pages": 273,
-      "status": "new",
-      "photo": "",
-      "comments": "Sense obrir",
-      "soldDate": "",
-      "id": 6
-    },
-    {
       "idUser": 4,
       "idModule": "5021",
       "publisher": "McGraw-Hill",
