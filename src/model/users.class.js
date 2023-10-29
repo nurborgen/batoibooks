@@ -20,8 +20,10 @@ export default class Users {
         return this.data.find(users => users.nick == nick)
     }
 
-    populateData(array) {
-        return usersRepository.getAllUsers()
+    async populateData() {
+        const usersRepository = new UsersRepository()
+        const array = await usersRepository.getAllUsers()
+        this.data = array
     }
 
     addItem(object) {

@@ -1,4 +1,4 @@
-import BooksRepositoy from "../repositories/books.repository"
+import BooksRepository from "../repositories/books.repository"
 import Book from "./book.class"
 
 export default class Books {
@@ -76,9 +76,10 @@ export default class Books {
         return filteredBooks
     }
 
-    populateData() {
-        const booksRepository =  new BooksRepositoy()
-        return booksRepository.getAllBooks()
+    async populateData() {
+        const booksRepository =  new BooksRepository()
+        const array = await booksRepository.getAllBooks()
+        this.data = array
     }
 
     addItem(object) {
@@ -97,13 +98,9 @@ export default class Books {
         return result + 1
     }
 
-    removeItem(item) {
-        let index = this.data.findIndex(user => user.id === item)
-        if(index === -1) {
-            throw 'El libro con el id ' + item + ' no existe'
-        }
-        this.data.splice(index, 1)
-        return {}
+    async removeBook(id) {
+        const booksRepository = new BooksRepository()
+        return await booksRepository.removeBooks(id)
     }
 
     toString() {
@@ -122,5 +119,11 @@ export default class Books {
         const filteredBooks = new Books()
         filteredBooks.data = this.data.filter(book => book.price <= precio);
         return filteredBooks
+    }
+
+    async getBookById(id) {
+        const booksRepository = new BooksRepository()
+        const book = await booksRepository.getBooksById(id)
+        return new Book(book)
     }
 }

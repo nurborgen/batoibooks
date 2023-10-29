@@ -1,9 +1,9 @@
 import './style.css'
 import logoBatoi from '/logoBatoi.png'
-import data from './datos'
 import books from './src/model/books.class'
 import users from './src/model/users.class'
 import modules from './src/model/modules.class'
+import Controller from './src/controller/controller.class'
 
 document.querySelector('#app').innerHTML = `
   <header>
@@ -40,22 +40,30 @@ document.querySelector('#app').innerHTML = `
 
         <div>
           <label for="price">Precio:</label>
-          <input type="number" id="price"><br>
+          <input type="number" id="price" required><br>
         </div>
 
         <div>
           <label for="pages">Páginas:</label>
-          <input type="number" id="pages"><br>
+          <input type="number" id="pages" required><br>
         </div>
 
         <div>
           <label>Estado:</label>
-          <!-- Aquí poned un radiobutton para cada estado -->
+          <div></div>
+          <input type="radio" id="status" name="status" value="new">
+          <label>Nuevo</label>
+          <input type="radio" id="status" name="status value="good"">
+          <label>Bien</label>
+          <input type="radio" id="status" name="status" value="used">
+          <label>Usado</label>
+          <input type="radio" id="status" name="status" value="bad">
+          <label>Malo</label>
         </div>
 
         <div>
           <label for="comments">Comentarios:</label>
-          <textarea id="comments"></textarea>
+          <textarea id="comments" required></textarea>
         </div>
 
         <button type="submit">Añadir</button>
