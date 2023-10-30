@@ -4,6 +4,7 @@ export default class View {
       this.booksContainer = document.getElementById('books');
       this.bookForm = document.getElementById('form');
       this.remove = document.getElementById('remove');
+      this.list = document.getElementById('list')
     }
   
     renderOptions(modules) {
@@ -28,27 +29,26 @@ export default class View {
     }
   
     renderAllBooks(books) {
-      const list = document.getElementById('list')
       books.forEach(book => {
-        this.renderBook(book, list)
+        this.renderBook(book)
       })
     }
 
-    renderBook(book, list) {
+    renderBook(book) {
       const div = document.createElement('div')
       div.setAttribute('class', 'card')
       div.setAttribute('id', 'book-' + book.id)
       div.innerHTML = `<img src="${book.photo}" alt="Libro: ${book.id}">
       <div>
-        <h5>${book.vliteral} (${book.id})</h5>
+        <h5>${book.idModule} (${book.id})</h5>
         <h6>${book.publisher}</h6>
         <p>Precio: ${book.price}</p>
         <p>Páginas: ${book.pages}</p>
         <p>Estado: ${book.status}</p>
-        <p>En venta // Vendido el 21/12/2023</p>
+        <p>${book.soldDate ? "Vendido el: " + book.soldDate : "En venta"}</p>
         <p>Comentarios: ${book.comments} </p>
       </div>`
-      list.appendChild(div)
+      this.list.appendChild(div)
     }
   
     listenDelete(id) {
@@ -64,6 +64,5 @@ export default class View {
     clearForm() {
       this.bookForm.reset();
     }
-  
   
   }
