@@ -24,7 +24,6 @@ document.querySelector('#app').innerHTML = `
     <div id="list">
     </div>
     <div id="form">
-      <button id="remove">Borrar libro</button>
       <form id="bookForm">
         <div>
           <label for="id-module">Módulo:</label>

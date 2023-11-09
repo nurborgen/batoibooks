@@ -39,7 +39,7 @@ export default class View {
       div.setAttribute('class', 'card')
       div.setAttribute('id', 'book-' + book.id)
       div.innerHTML = `<img src="${book.photo}" alt="Libro: ${book.id}">
-      <div>
+      <div id="book${book.id}">
         <h5>${book.idModule} (${book.id})</h5>
         <h6>${book.publisher}</h6>
         <p>Precio: ${book.price}</p>
@@ -47,6 +47,15 @@ export default class View {
         <p>Estado: ${book.status}</p>
         <p>${book.soldDate ? "Vendido el: " + book.soldDate : "En venta"}</p>
         <p>Comentarios: ${book.comments} </p>
+        <button class="cart" id="book-${book.id}">
+          <span class="material-icons">add_shopping_cart</span>
+        </button>
+        <button class="edit" id="book-${book.id}">
+          <span class="material-icons">edit</span>
+        </button>
+        <button class="delete" id="book-${book.id}">
+          <span class="material-icons">delete</span>
+        </button>
       </div>`
       this.list.appendChild(div)
     }
