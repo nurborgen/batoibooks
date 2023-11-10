@@ -1863,76 +1863,44 @@
   ],
   "books": [
     {
-      "idUser": 4,
-      "idModule": "5021",
-      "publisher": "McGraw-Hill",
-      "price": 15,
-      "pages": 173,
-      "status": "bad",
-      "photo": "",
-      "comments": "Fet pols",
-      "soldDate": "",
-      "id": 7
-    },
-    {
-      "idUser": 4,
-      "idModule": "5025",
-      "publisher": "McGraw-Hill",
-      "price": 15,
-      "pages": 173,
-      "status": "good",
-      "photo": "",
-      "comments": "",
-      "soldDate": "",
-      "id": 8
-    },
-    {
-      "idUser": 4,
-      "idModule": "5025",
-      "publisher": "Apunts",
-      "price": 35,
-      "pages": 73,
-      "status": "good",
-      "photo": "",
-      "comments": "",
-      "soldDate": "",
-      "id": 9
-    },
-    {
-      "idUser": 5,
-      "idModule": "5021",
-      "publisher": "Apunts",
-      "price": 5,
-      "pages": 57,
-      "status": "good",
-      "photo": "",
-      "comments": "",
-      "soldDate": "",
-      "id": 10
-    },
-    {
-      "price": "2",
-      "pages": "2345",
+      "id": 8,
+      "idUser": 2,
+      "idModule": "0021",
+      "publisher": "dfhg",
+      "price": "13",
+      "pages": "96",
       "status": "new",
-      "comments": "hola",
-      "soldDate": "",
-      "id": 11
+      "comments": "Hola!!"
     },
     {
-      "price": "4",
-      "pages": "28",
-      "status": "new",
-      "comments": "hola",
-      "soldDate": "",
-      "id": 12
-    },
-    {
-      "price": "32",
+      "id": 9,
+      "idUser": 2,
+      "idModule": "0031",
+      "publisher": "dhj",
+      "price": "89",
       "pages": "874",
       "status": "new",
-      "comments": "hola",
-      "soldDate": "",
-      "id": 13
+      "comments": "holi"
+    },
+    {
+      "id": 10,
+      "idUser": 2,
+      "idModule": "0028",
+      "publisher": "sfgsargft",
+      "price": "21",
+      "pages": "146",
+      "status": "new",
+      "comments": "asfgqwert"
+    },
+    {
+      "id": 11,
+      "idUser": 2,
+      "idModule": "0049",
+      "publisher": "aaaa",
+      "price": "12",
+      "pages": "21",
+      "status": "new",
+      "comments": "aaaa"
     }
   ]
 }

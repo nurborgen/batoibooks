@@ -25,10 +25,10 @@ export default class BooksRepository {
         const response = await fetch(this.SERVER + '/books', {
             method: 'POST',
             body: JSON.stringify({
-                id: book.code,
-                idUser: book.cliteral,
-                idModule: book.vliteral,
-                publisher: book.idCourse,
+                id: book.id,
+                idUser: book.idUser,
+                idModule: book.idModule,
+                publisher: book.publisher,
                 price: book.price,
                 pages: book.pages,
                 status: book.status,
@@ -59,7 +59,7 @@ export default class BooksRepository {
     }
 
     async changeBooks(book) {
-        const response = await fetch(this.SERVER + '/books/' + book.code, {
+        const response = await fetch(this.SERVER + '/books/' + book.id, {
             method: 'PUT',
             body: JSON.stringify(book),
             headers: {

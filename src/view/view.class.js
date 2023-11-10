@@ -47,8 +47,18 @@ export default class View {
         <p>Estado: ${book.status}</p>
         <p>${book.soldDate ? "Vendido el: " + book.soldDate : "En venta"}</p>
         <p>Comentarios: ${book.comments} </p>
+        <button class="cart">
+          <span class="material-icons">add_shopping_cart</span>
+        </button>
+        <button class="edit">
+          <span class="material-icons">edit</span>
+        </button>
+        <button class="delete">
+          <span class="material-icons">delete</span>
+        </button>
       </div>`
       this.list.appendChild(div)
+      return div;
     }
   
     listenDelete(id) {
@@ -63,6 +73,45 @@ export default class View {
 
     clearForm() {
       this.bookForm.reset();
+    }
+
+    removeBook(book) {
+      const div = document.getElementById('book-' + book.id)
+      div.parentElement.removeChild(div)
+    }
+
+    modifyBook(book) {
+      const divBook = document.getElementById('book-' + book.id)
+      divBook.innerHTML =  `<img src="${book.photo}" alt="Libro: ${book.id}">
+        <div>
+        <h5>${book.idModule} (${book.id})</h5>
+        <h6>${book.publisher}</h6>
+        <p>Precio: ${book.price}</p>
+        <p>Páginas: ${book.pages}</p>
+        <p>Estado: ${book.status}</p>
+        <p>${book.soldDate ? "Vendido el: " + book.soldDate : "En venta"}</p>
+        <p>Comentarios: ${book.comments} </p>
+        <button class="cart">
+          <span class="material-icons">add_shopping_cart</span>
+        </button>
+        <button class="edit">
+          <span class="material-icons">edit</span>
+        </button>
+        <button class="delete">
+          <span class="material-icons">delete</span>
+        </button>
+      </div>`
+      return divBook;
+    }
+
+    renderTitulo(message) {
+      const div =document.getElementById('titulo') 
+      div.innerHTML = `${message}`
+    }
+
+    renderModLibro(book) {
+      document.getElementById('id').parentElement.removeAttribute('hidden')
+      document.getElementById('id').value = book.id
     }
   
   }

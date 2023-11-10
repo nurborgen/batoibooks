@@ -6,6 +6,22 @@ export default class Books {
         this.data = []
     }
 
+    async changeBook(book) {
+        const booksRepository = new BooksRepository()
+        const object = await booksRepository.changeBooks(book)
+        const newBook = new Book(object)
+        const index = this.data.findIndex(llibre => llibre.id == book.id)
+        this.data.splice(index,1,newBook)
+        return newBook
+    }
+
+    async addItem(object) {
+        const booksRepository = new BooksRepository()
+        const newBook = await booksRepository.addBooks(object)
+        let book = new Book(newBook)
+        this.data.push(book)
+        return book
+    }
 
     booksFromModule(module) {
         let result = new Books
@@ -82,25 +98,11 @@ export default class Books {
         this.data = array
     }
 
-    addItem(object) {
-        object.id = this.getNewId()
-        let book = new Book(object)
-        this.data.push(book)
-        return book
-    }
+    
 
-    getNewId() {
-        let result = new Books()
-        if(this.data.length === 0) {
-            return 1
-        }
-        result =  this.data.reduce((max, user) => user.id > max ? user.id : max, 0)
-        return result + 1
-    }
-
-    async removeBook(id) {
+    async removeBook(book) {
         const booksRepository = new BooksRepository()
-        return await booksRepository.removeBooks(id)
+        return await booksRepository.removeBooks(book.id)
     }
 
     toString() {
