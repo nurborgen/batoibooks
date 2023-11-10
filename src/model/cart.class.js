@@ -10,18 +10,13 @@ export default class Cart {
 
     }
 
-    getBookByID(id) {
-        const book = booksRepository.getBookByID(id)
-        if(this.data.find(book)) {
-            return book
-        } else {
-            return {}
-        }
+    getBookById(id) {
+        return this.data.find(book => book.id === id) || {}
     }
 
     addItem(book) {
-        
-        if(!this.getBookByID(book.id)) {
+        const exist = this.getBookById(book.id)
+        if(!exist.id) {
             const bookCopy = new Book(book);
             this.data.push(bookCopy)
         } else {
@@ -29,8 +24,8 @@ export default class Cart {
         }
     }
 
-    removeItem(id) {
-        const item = booksRepository.getBookByID(id)
+    async removeItem(id) {
+        const item = await this.getBookById(id)
         if(!this.getBookByID(id)) {
             this.data.removeItem(item)
         } else {

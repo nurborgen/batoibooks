@@ -29,21 +29,16 @@ export default class Controller {
         }
 
         this.view.renderOptions(this.modules.data)
-        this.view.renderAllBooks(this.books.data)
 
-        this.view.remove.addEventListener('click', async (event) => {
-            try{
-                await this.books.removeBook(id)
-            } catch (error) {
-                this.view.renderMessage('error', 'No se encuentra ningun libro con esa id')
-                return
-            }
-            this.view.listenDelete(id)
-        })
+        this.books.data.forEach(book => {
+            const div = this.view.renderBook(book)
+            this.setListeners(book, div)
+        });
+
+        this.view.renderTitulo('Añadir libro')
     
         this.view.bookForm.addEventListener('submit', async (event) => {
-            // Aquí poned el código que
-            // - cogerá los datos del formulario
+            
             event.preventDefault();
             const idUser = 2
             const idModule = document.getElementById('id-module').value
@@ -52,29 +47,72 @@ export default class Controller {
             const pages = document.getElementById('pages').value
             const status = document.getElementById('status').value
             const comments = document.getElementById('comments').value
+            const id = document.getElementById('id').value
+            
             // - los validará
             if ( idModule === '' || publisher === '' || price === '' || pages === '' || status === '' || comments === '') {
-                alert('Per favor, ompliu tots els camps obligatoris.');
-                return;
-              }
+              alert('Per favor, ompliu tots els camps obligatoris.');
+              return;
+            }
+        
+            if (isNaN(price) || isNaN(pages)) {
+              alert('El preu i el nombre de pàgines han de ser números.');
+              return;
+            }
+        
+            if(id == '') {
+              const finalBook = this.books.addItem({idUser, idModule, publisher, price, pages, status, comments})
+              const div = this.view.renderBook(finalBook)
+              this.setListeners(finalBook, div)
+            } else {
+              const newBook = await this.books.changeBook({id, idUser, idModule, publisher, price, pages, status, comments})
+              const div = this.view.modifyBook(newBook)
+              this.setListeners(newBook, div)
+              this.view.renderTitulo("Añadir libro")
+            }
             
-              if (isNaN(price) || isNaN(pages)) {
-                alert('El preu i el nombre de pàgines han de ser números.');
-                return;
-              }
-            // - pedirá al modelo que añada ese libro
-            const constr = {idUser: idUser, idModule: idModule, publisher: publisher, price: price, pages: pages, status: status, comments: comments}
-            const book = new Book(constr)
-            const booksRepository =  new BooksRepository()
-            await booksRepository.addBooks(book)
-            this.view.renderBook(book)
-            // - una vez hecho lo añadirá a la vista y borrará el formulario
-            //this.view.clearForm()
         })
     }
-    //bookUI = querySelector('delete').addEventListener('click', ()=>)
+   
+    setListeners(book, div){
+        div.querySelector('.cart').addEventListener('click', () => {
+            try {
+                this.cart.addItem(book)
+                this.view.renderMessage('Libro añadido correctamente')
+            } catch (error) {
+                this.view.renderMessage(error.renderMessage)
+                return
+            }
+        })
 
-    setListeners(book){
-        
+        div.querySelector('.delete').addEventListener('click', async () => {
+            try {
+                const confirm = window.confirm('Deseas eliminar el libro')
+                if(confirm) {
+                    await this.books.removeBook(book)
+                    this.view.removeBook(book)
+                    this.view.renderMessage('Libro borrado correctamente')
+                } else {
+                    return
+                }
+            } catch (error) {
+                this.view.renderMessage('error', 'No se ha añadido ningun libro.')
+                return
+            }
+        })
+
+        div.querySelector('.edit').addEventListener('click', async () => {
+            this.view.renderTitulo('Modificar libro')
+            this.view.renderModLibro(book)
+            document.getElementById('id-module').value = book.idModule
+            document.getElementById('publisher').value = book.publisher
+             document.getElementById('price').value = book.price
+            document.getElementById('pages').value = book.pages
+            document.getElementById('status').value = book.status
+            document.getElementById('comments').value = book.comments
+            document.getElementById('id').value = book.id
+        })
     }
+
+
 }
